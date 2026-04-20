@@ -1,0 +1,12 @@
+2026-03-03 14:28:38,188 - ERROR - Gagal saat proses: Page.fill: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("input#email")
+
+2026-03-03 14:38:45,765 - ERROR - Error: Page.fill: Target page, context or browser has been closed
+Call log:
+  - waiting for locator("input[name=\"email\"]")
+
+2026-03-03 14:39:22,682 - ERROR - Error: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.facebook.com/", waiting until "networkidle"
+

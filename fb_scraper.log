@@ -1,0 +1,492 @@
+2026-03-04 13:31:20,042 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 13:31:22,376 - INFO - [start_ultra_scraper] - Opening Facebook
+2026-03-04 13:31:26,036 - INFO - [start_ultra_scraper] - Already logged in from previous session
+2026-03-04 13:31:26,037 - INFO - [navigate_to_group] - Navigating to: https://www.facebook.com/groups/849737045757400
+2026-03-04 13:31:29,384 - WARNING - [navigate_to_group] - Navigate attempt 1 failed: Page.goto: Page crashed
+Call log:
+  - navigating to "https://www.facebook.com/groups/849737045757400", waiting until "domcontentloaded"
+
+2026-03-04 13:31:29,691 - ERROR - [start_ultra_scraper] - Critical error in scraper: Page.reload: Page crashed
+Call log:
+  - waiting for navigation until "load"
+Traceback (most recent call last):
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 258, in start_ultra_scraper
+    success = await navigate_to_group(page, target_url)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 145, in navigate_to_group
+    await page.reload()
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\async_api\_generated.py", line 9033, in reload
+    await self._impl_obj.reload(timeout=timeout, waitUntil=wait_until)
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_page.py", line 564, in reload
+    await self._channel.send(
+    ...<3 lines>...
+    )
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 558, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.reload: Page crashed
+Call log:
+  - waiting for navigation until "load"
+
+2026-03-04 13:31:30,651 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 13:32:29,364 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 13:32:31,233 - INFO - [start_ultra_scraper] - Opening Facebook
+2026-03-04 13:32:34,822 - INFO - [start_ultra_scraper] - Already logged in from previous session
+2026-03-04 13:32:34,822 - INFO - [navigate_to_group] - Navigating to: https://www.facebook.com/groups/849737045757400
+2026-03-04 13:32:37,107 - WARNING - [navigate_to_group] - Navigate attempt 1 failed: Page.goto: Page crashed
+Call log:
+  - navigating to "https://www.facebook.com/groups/849737045757400", waiting until "domcontentloaded"
+
+2026-03-04 13:32:37,413 - ERROR - [start_ultra_scraper] - Critical error in scraper: Page.reload: Page crashed
+Call log:
+  - waiting for navigation until "load"
+Traceback (most recent call last):
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 258, in start_ultra_scraper
+    success = await navigate_to_group(page, target_url)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 145, in navigate_to_group
+    await page.reload()
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\async_api\_generated.py", line 9033, in reload
+    await self._impl_obj.reload(timeout=timeout, waitUntil=wait_until)
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_page.py", line 564, in reload
+    await self._channel.send(
+    ...<3 lines>...
+    )
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 558, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.reload: Page crashed
+Call log:
+  - waiting for navigation until "load"
+
+2026-03-04 13:32:38,262 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 13:36:32,389 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 13:36:34,347 - INFO - [start_ultra_scraper] - Opening Facebook
+2026-03-04 13:36:38,103 - INFO - [start_ultra_scraper] - Already logged in from previous session
+2026-03-04 13:36:38,117 - INFO - [navigate_to_group] - Navigating to: https://www.facebook.com/groups/849737045757400
+2026-03-04 13:36:51,030 - WARNING - [navigate_to_group] - Navigate attempt 1 failed: Page.wait_for_selector: Page crashed
+Call log:
+  - waiting for locator("div[role=\"main\"]") to be visible
+
+2026-03-04 13:36:51,546 - ERROR - [start_ultra_scraper] - Critical error in scraper: Page.reload: Page crashed
+Call log:
+  - waiting for navigation until "load"
+Traceback (most recent call last):
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 265, in start_ultra_scraper
+    success = await navigate_to_group(page, target_url)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 145, in navigate_to_group
+    await page.reload()
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\async_api\_generated.py", line 9033, in reload
+    await self._impl_obj.reload(timeout=timeout, waitUntil=wait_until)
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_page.py", line 564, in reload
+    await self._channel.send(
+    ...<3 lines>...
+    )
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 558, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.reload: Page crashed
+Call log:
+  - waiting for navigation until "load"
+
+2026-03-04 13:36:52,488 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 13:41:30,028 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 13:41:32,054 - INFO - [start_ultra_scraper] - Opening Facebook
+2026-03-04 13:41:44,171 - INFO - [handle_login] - Login attempt dengan user: humas***
+2026-03-04 13:41:45,422 - WARNING - [handle_login] - Login button tidak ditemukan, coba Enter key
+2026-03-04 13:41:56,053 - INFO - [handle_login] - Login successful
+2026-03-04 13:41:56,058 - INFO - [navigate_to_group] - Navigating to: https://www.facebook.com/groups/849737045757400
+2026-03-04 13:42:13,385 - WARNING - [navigate_to_group] - Navigate attempt 1 failed: Page.wait_for_selector: Timeout 15000ms exceeded.
+Call log:
+  - waiting for locator("div[role=\"main\"]") to be visible
+    7 × locator resolved to hidden <div role="main" class="x78zum5 xdt5ytf x1t2pt76 x1n2onr6">…</div>
+
+2026-03-04 13:42:13,895 - ERROR - [start_ultra_scraper] - Critical error in scraper: Page.reload: Page crashed
+Call log:
+  - waiting for navigation until "load"
+Traceback (most recent call last):
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 265, in start_ultra_scraper
+    success = await navigate_to_group(page, target_url)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 145, in navigate_to_group
+    await page.reload()
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\async_api\_generated.py", line 9033, in reload
+    await self._impl_obj.reload(timeout=timeout, waitUntil=wait_until)
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_page.py", line 564, in reload
+    await self._channel.send(
+    ...<3 lines>...
+    )
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 558, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.reload: Page crashed
+Call log:
+  - waiting for navigation until "load"
+
+2026-03-04 13:42:14,485 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 13:42:49,006 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 13:42:51,535 - INFO - [start_ultra_scraper] - Opening Facebook
+2026-03-04 13:43:01,258 - INFO - [handle_login] - Login attempt dengan user: humas***
+2026-03-04 13:43:02,401 - WARNING - [handle_login] - Login button tidak ditemukan, coba Enter key
+2026-03-04 13:43:13,215 - INFO - [handle_login] - Login successful
+2026-03-04 13:43:13,260 - INFO - [navigate_to_group] - Navigating to: https://www.facebook.com/groups/849737045757400
+2026-03-04 13:43:18,835 - WARNING - [navigate_to_group] - Navigate attempt 1 failed: Page.goto: Page crashed
+Call log:
+  - navigating to "https://www.facebook.com/groups/849737045757400", waiting until "domcontentloaded"
+
+2026-03-04 13:43:19,345 - ERROR - [start_ultra_scraper] - Critical error in scraper: Page.reload: Page crashed
+Call log:
+  - waiting for navigation until "load"
+Traceback (most recent call last):
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 265, in start_ultra_scraper
+    success = await navigate_to_group(page, target_url)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 145, in navigate_to_group
+    await page.reload()
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\async_api\_generated.py", line 9033, in reload
+    await self._impl_obj.reload(timeout=timeout, waitUntil=wait_until)
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_page.py", line 564, in reload
+    await self._channel.send(
+    ...<3 lines>...
+    )
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 558, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.reload: Page crashed
+Call log:
+  - waiting for navigation until "load"
+
+2026-03-04 13:43:20,235 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 13:46:43,713 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 13:46:45,891 - INFO - [start_ultra_scraper] - Opening Facebook
+2026-03-04 13:46:56,131 - INFO - [handle_login] - Login attempt dengan user: humas***
+2026-03-04 13:46:57,207 - WARNING - [handle_login] - Login button tidak ditemukan, coba Enter key
+2026-03-04 13:47:07,774 - INFO - [handle_login] - Login successful
+2026-03-04 13:47:07,775 - INFO - [navigate_to_group] - Navigating to: https://www.facebook.com/groups/849737045757400
+2026-03-04 13:47:18,987 - WARNING - [navigate_to_group] - Navigate attempt 1 failed: Page.wait_for_selector: Page crashed
+Call log:
+  - waiting for locator("div[role=\"main\"]") to be visible
+    8 × locator resolved to hidden <div role="main" class="x78zum5 xdt5ytf x1t2pt76 x1n2onr6">…</div>
+
+2026-03-04 13:47:19,504 - ERROR - [start_ultra_scraper] - Critical error in scraper: Page.reload: Page crashed
+Call log:
+  - waiting for navigation until "load"
+Traceback (most recent call last):
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 265, in start_ultra_scraper
+    success = await navigate_to_group(page, target_url)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 145, in navigate_to_group
+    await page.reload()
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\async_api\_generated.py", line 9033, in reload
+    await self._impl_obj.reload(timeout=timeout, waitUntil=wait_until)
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_page.py", line 564, in reload
+    await self._channel.send(
+    ...<3 lines>...
+    )
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 558, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.reload: Page crashed
+Call log:
+  - waiting for navigation until "load"
+
+2026-03-04 13:47:20,335 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 13:50:19,230 - INFO - [get_credentials_sync] - User input credentials: humas***
+2026-03-04 13:50:23,126 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 13:50:24,807 - INFO - [start_ultra_scraper] - Opening Facebook
+2026-03-04 13:50:29,684 - INFO - [start_ultra_scraper] - Already logged in from previous session
+2026-03-04 13:50:29,685 - INFO - [navigate_to_group] - Navigating to: https://www.facebook.com/groups/849737045757400
+2026-03-04 13:50:32,535 - WARNING - [navigate_to_group] - Navigate attempt 1 failed: Page.goto: Page crashed
+Call log:
+  - navigating to "https://www.facebook.com/groups/849737045757400", waiting until "domcontentloaded"
+
+2026-03-04 13:50:33,046 - ERROR - [start_ultra_scraper] - Critical error in scraper: Page.reload: Page crashed
+Call log:
+  - waiting for navigation until "load"
+Traceback (most recent call last):
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 368, in start_ultra_scraper
+    success = await navigate_to_group(page, target_url)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 235, in navigate_to_group
+    await page.reload()
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\async_api\_generated.py", line 9033, in reload
+    await self._impl_obj.reload(timeout=timeout, waitUntil=wait_until)
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_page.py", line 564, in reload
+    await self._channel.send(
+    ...<3 lines>...
+    )
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 558, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.reload: Page crashed
+Call log:
+  - waiting for navigation until "load"
+
+2026-03-04 13:50:33,799 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 13:51:46,605 - INFO - [get_credentials_sync] - User input credentials: humas***
+2026-03-04 13:51:50,474 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 13:51:52,626 - INFO - [start_ultra_scraper] - Opening Facebook
+2026-03-04 13:51:55,965 - INFO - [handle_login] - Login attempt dengan user: humas***
+2026-03-04 13:51:57,422 - WARNING - [handle_login] - Login button tidak ditemukan, coba Enter key
+2026-03-04 13:52:08,020 - INFO - [handle_login] - Login successful
+2026-03-04 13:52:08,022 - INFO - [navigate_to_group] - Navigating to: https://www.facebook.com/groups/849737045757400
+2026-03-04 13:52:11,957 - INFO - [navigate_to_group] - Group page loaded successfully
+2026-03-04 13:52:18,530 - INFO - [start_ultra_scraper] - Starting data extraction - 5 scrolls
+2026-03-04 13:52:23,565 - INFO - [extract_articles_data] - Found 8 articles on page
+2026-03-04 13:52:23,602 - INFO - [start_ultra_scraper] - Scroll 1: 0 records extracted
+2026-03-04 13:52:31,163 - INFO - [extract_articles_data] - Found 10 articles on page
+2026-03-04 13:52:31,231 - INFO - [start_ultra_scraper] - Scroll 2: 1 records extracted
+2026-03-04 13:52:38,799 - INFO - [extract_articles_data] - Found 10 articles on page
+2026-03-04 13:52:38,837 - INFO - [start_ultra_scraper] - Scroll 3: 1 records extracted
+2026-03-04 13:52:46,392 - INFO - [extract_articles_data] - Found 10 articles on page
+2026-03-04 13:52:46,437 - INFO - [start_ultra_scraper] - Scroll 4: 1 records extracted
+2026-03-04 13:52:53,990 - INFO - [extract_articles_data] - Found 10 articles on page
+2026-03-04 13:52:54,035 - INFO - [start_ultra_scraper] - Scroll 5: 1 records extracted
+2026-03-04 13:52:54,035 - INFO - [start_ultra_scraper] - Total data before dedup: 4
+2026-03-04 13:52:54,036 - INFO - [deduplicate_data] - Deduplicated: 4 -> 1 records
+2026-03-04 13:52:54,066 - INFO - [start_ultra_scraper] - Scraping completed: 1 records saved to inovasi_sumba_20260304_135254.csv
+2026-03-04 13:52:54,665 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 13:55:11,739 - INFO - [get_credentials_sync] - User input credentials: humas***
+2026-03-04 13:55:16,671 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 13:55:19,259 - INFO - [start_ultra_scraper] - Opening Facebook
+2026-03-04 13:55:20,501 - INFO - [handle_login] - Login attempt dengan user: humas***
+2026-03-04 13:55:21,570 - WARNING - [handle_login] - Login button tidak ditemukan, coba Enter key
+2026-03-04 13:55:32,127 - INFO - [handle_login] - Login successful
+2026-03-04 13:55:32,128 - INFO - [navigate_to_group] - Navigating to: https://www.facebook.com/groups/849737045757400
+2026-03-04 13:55:38,444 - WARNING - [navigate_to_group] - Navigate attempt 1 failed: Page.wait_for_selector: Target page, context or browser has been closed
+2026-03-04 13:55:38,450 - ERROR - [start_ultra_scraper] - Critical error in scraper: Page.reload: Target page, context or browser has been closed
+Traceback (most recent call last):
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 368, in start_ultra_scraper
+    success = await navigate_to_group(page, target_url)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 235, in navigate_to_group
+    await page.reload()
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\async_api\_generated.py", line 9033, in reload
+    await self._impl_obj.reload(timeout=timeout, waitUntil=wait_until)
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_page.py", line 564, in reload
+    await self._channel.send(
+    ...<3 lines>...
+    )
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 558, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Page.reload: Target page, context or browser has been closed
+2026-03-04 13:55:39,241 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 14:07:49,673 - INFO - [get_credentials_sync] - User input credentials: humas***
+2026-03-04 14:07:53,741 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 14:07:55,591 - INFO - [start_ultra_scraper] - Opening target group: https://www.facebook.com/groups/849737045757400
+2026-03-04 14:07:59,869 - INFO - [start_ultra_scraper] - Already logged in from previous session
+2026-03-04 14:08:06,410 - INFO - [start_ultra_scraper] - Starting data extraction - 5 scrolls
+2026-03-04 14:08:21,433 - WARNING - [extract_articles_data] - Article selector not found, continuing...
+2026-03-04 14:08:21,433 - INFO - [start_ultra_scraper] - Scroll 1: 0 records extracted
+2026-03-04 14:08:30,655 - WARNING - [extract_articles_data] - Article selector not found, continuing...
+2026-03-04 14:08:30,657 - INFO - [start_ultra_scraper] - Scroll 2: 0 records extracted
+2026-03-04 14:08:30,662 - ERROR - [start_ultra_scraper] - Critical error in scraper: Mouse.wheel: Target page, context or browser has been closed
+Traceback (most recent call last):
+  File "D:\2026\0. INOVASI\Scrapping facebook\scrap.py", line 462, in start_ultra_scraper
+    await page.mouse.wheel(0, config.SCROLL_DEPTH)
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\async_api\_generated.py", line 1590, in wheel
+    await self._impl_obj.wheel(deltaX=delta_x, deltaY=delta_y)
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_input.py", line 101, in wheel
+    await self._channel.send("mouseWheel", None, locals_to_params(locals()))
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\SERVER IPDS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\playwright\_impl\_connection.py", line 558, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TargetClosedError: Mouse.wheel: Target page, context or browser has been closed
+2026-03-04 14:08:31,491 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 14:10:13,578 - INFO - [get_credentials_sync] - User input credentials: humas***
+2026-03-04 14:10:17,445 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 14:10:19,178 - INFO - [start_ultra_scraper] - Opening target group: https://www.facebook.com/groups/849737045757400/posts/2033088860755540/
+2026-03-04 14:10:21,339 - INFO - [start_ultra_scraper] - Already logged in from previous session
+2026-03-04 14:10:27,916 - INFO - [start_ultra_scraper] - Starting data extraction - 5 scrolls
+2026-03-04 14:10:32,963 - INFO - [extract_articles_data] - Found 4 articles on page
+2026-03-04 14:10:32,993 - INFO - [start_ultra_scraper] - Scroll 1: 0 records extracted
+2026-03-04 14:10:40,565 - INFO - [extract_articles_data] - Found 10 articles on page
+2026-03-04 14:10:40,636 - INFO - [start_ultra_scraper] - Scroll 2: 3 records extracted
+2026-03-04 14:10:48,231 - INFO - [extract_articles_data] - Found 10 articles on page
+2026-03-04 14:10:48,291 - INFO - [start_ultra_scraper] - Scroll 3: 3 records extracted
+2026-03-04 14:10:55,897 - INFO - [extract_articles_data] - Found 10 articles on page
+2026-03-04 14:10:55,976 - INFO - [start_ultra_scraper] - Scroll 4: 3 records extracted
+2026-03-04 14:11:03,585 - INFO - [extract_articles_data] - Found 10 articles on page
+2026-03-04 14:11:03,653 - INFO - [start_ultra_scraper] - Scroll 5: 3 records extracted
+2026-03-04 14:11:03,658 - INFO - [start_ultra_scraper] - Total data before dedup: 12
+2026-03-04 14:11:03,658 - INFO - [deduplicate_data] - Deduplicated: 12 -> 3 records
+2026-03-04 14:11:03,706 - INFO - [start_ultra_scraper] - Scraping completed: 3 records saved to inovasi_sumba_20260304_141103.csv
+2026-03-04 14:11:04,682 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 14:13:53,098 - INFO - [get_credentials_sync] - User input credentials: humas***
+2026-03-04 14:13:56,958 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 14:13:58,868 - INFO - [start_ultra_scraper] - Opening target group: https://www.facebook.com/groups/849737045757400/posts/2033088860755540/
+2026-03-04 14:14:00,411 - INFO - [start_ultra_scraper] - Already logged in from previous session
+2026-03-04 14:14:06,997 - INFO - [start_ultra_scraper] - Starting data extraction - 5 scrolls
+2026-03-04 14:14:12,027 - INFO - [extract_articles_data] - Found 4 articles on page
+2026-03-04 14:14:12,048 - INFO - [start_ultra_scraper] - Scroll 1: 0 records extracted
+2026-03-04 14:14:19,604 - INFO - [extract_articles_data] - Found 10 articles on page
+2026-03-04 14:14:19,655 - INFO - [start_ultra_scraper] - Scroll 2: 3 records extracted
+2026-03-04 14:14:27,243 - INFO - [extract_articles_data] - Found 10 articles on page
+2026-03-04 14:14:27,308 - INFO - [start_ultra_scraper] - Scroll 3: 3 records extracted
+2026-03-04 14:14:39,752 - INFO - [extract_articles_data] - Found 5 articles on page
+2026-03-04 14:14:39,887 - INFO - [start_ultra_scraper] - Scroll 4: 0 records extracted
+2026-03-04 14:14:47,511 - INFO - [extract_articles_data] - Found 3 articles on page
+2026-03-04 14:14:47,544 - INFO - [start_ultra_scraper] - Scroll 5: 0 records extracted
+2026-03-04 14:14:47,569 - INFO - [start_ultra_scraper] - Total data before dedup: 6
+2026-03-04 14:14:47,570 - INFO - [deduplicate_data] - Deduplicated: 6 -> 3 records
+2026-03-04 14:14:47,674 - INFO - [start_ultra_scraper] - Scraping completed: 3 records saved to inovasi_sumba_20260304_141447.csv
+2026-03-04 14:14:49,501 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 14:16:00,378 - INFO - [get_credentials_sync] - User input credentials: humas***
+2026-03-04 14:16:04,730 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 14:16:06,558 - INFO - [start_ultra_scraper] - Opening target group: https://www.facebook.com/groups/849737045757400/posts/2033088860755540/
+2026-03-04 14:16:10,184 - INFO - [start_ultra_scraper] - Already logged in from previous session
+2026-03-04 14:16:16,745 - INFO - [start_ultra_scraper] - Starting data extraction - 5 scrolls
+2026-03-04 14:16:21,777 - INFO - [extract_articles_data] - Found 3 articles on page
+2026-03-04 14:16:21,793 - INFO - [start_ultra_scraper] - Scroll 1: 0 records extracted
+2026-03-04 14:16:29,344 - INFO - [extract_articles_data] - Found 9 articles on page
+2026-03-04 14:16:29,384 - INFO - [start_ultra_scraper] - Scroll 2: 1 records extracted
+2026-03-04 14:16:36,936 - INFO - [extract_articles_data] - Found 12 articles on page
+2026-03-04 14:16:36,982 - INFO - [start_ultra_scraper] - Scroll 3: 1 records extracted
+2026-03-04 14:16:44,571 - INFO - [extract_articles_data] - Found 16 articles on page
+2026-03-04 14:16:44,671 - INFO - [start_ultra_scraper] - Scroll 4: 1 records extracted
+2026-03-04 14:16:52,248 - INFO - [extract_articles_data] - Found 17 articles on page
+2026-03-04 14:16:52,341 - INFO - [start_ultra_scraper] - Scroll 5: 1 records extracted
+2026-03-04 14:16:52,343 - INFO - [start_ultra_scraper] - Total data before dedup: 4
+2026-03-04 14:16:52,343 - INFO - [deduplicate_data] - Deduplicated: 4 -> 1 records
+2026-03-04 14:16:52,405 - INFO - [start_ultra_scraper] - Scraping completed: 1 records saved to inovasi_sumba_20260304_141652.csv
+2026-03-04 14:16:54,041 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 14:17:32,731 - INFO - [get_credentials_sync] - User input credentials: humas***
+2026-03-04 14:17:36,503 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 14:17:39,421 - INFO - [start_ultra_scraper] - Opening target group: https://www.facebook.com/groups/849737045757400/posts/2033088860755540/
+2026-03-04 14:17:42,628 - INFO - [start_ultra_scraper] - Already logged in from previous session
+2026-03-04 14:17:49,197 - INFO - [start_ultra_scraper] - Starting data extraction - 5 scrolls
+2026-03-04 14:17:54,233 - INFO - [extract_articles_data] - Found 4 articles on page
+2026-03-04 14:17:54,254 - INFO - [start_ultra_scraper] - Scroll 1: 0 records extracted
+2026-03-04 14:18:01,825 - INFO - [extract_articles_data] - Found 9 articles on page
+2026-03-04 14:18:01,881 - INFO - [start_ultra_scraper] - Scroll 2: 1 records extracted
+2026-03-04 14:18:11,984 - INFO - [extract_articles_data] - Found 5 articles on page
+2026-03-04 14:18:12,157 - INFO - [start_ultra_scraper] - Scroll 3: 0 records extracted
+2026-03-04 14:18:19,844 - INFO - [extract_articles_data] - Found 5 articles on page
+2026-03-04 14:18:19,884 - INFO - [start_ultra_scraper] - Scroll 4: 0 records extracted
+2026-03-04 14:18:27,466 - INFO - [extract_articles_data] - Found 5 articles on page
+2026-03-04 14:18:27,496 - INFO - [start_ultra_scraper] - Scroll 5: 0 records extracted
+2026-03-04 14:18:27,496 - INFO - [start_ultra_scraper] - Total data before dedup: 1
+2026-03-04 14:18:27,496 - INFO - [deduplicate_data] - Deduplicated: 1 -> 1 records
+2026-03-04 14:18:27,533 - INFO - [start_ultra_scraper] - Scraping completed: 1 records saved to inovasi_sumba_20260304_141827.csv
+2026-03-04 14:18:28,610 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 14:19:03,242 - INFO - [get_credentials_sync] - User input credentials: humas***
+2026-03-04 14:19:06,985 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 14:19:08,244 - INFO - [start_ultra_scraper] - Opening target group: https://www.facebook.com/groups/849737045757400/posts/2033088860755540/
+2026-03-04 14:19:12,190 - INFO - [start_ultra_scraper] - Already logged in from previous session
+2026-03-04 14:19:18,764 - INFO - [start_ultra_scraper] - Starting data extraction - 5 scrolls
+2026-03-04 14:19:23,825 - INFO - [extract_articles_data] - Found 6 articles on page
+2026-03-04 14:19:23,873 - INFO - [start_ultra_scraper] - Scroll 1: 0 records extracted
+2026-03-04 14:19:31,453 - INFO - [extract_articles_data] - Found 4 articles on page
+2026-03-04 14:19:31,482 - INFO - [start_ultra_scraper] - Scroll 2: 0 records extracted
+2026-03-04 14:19:39,033 - INFO - [extract_articles_data] - Found 10 articles on page
+2026-03-04 14:19:39,079 - INFO - [start_ultra_scraper] - Scroll 3: 1 records extracted
+2026-03-04 14:19:46,614 - INFO - [extract_articles_data] - Found 12 articles on page
+2026-03-04 14:19:46,662 - INFO - [start_ultra_scraper] - Scroll 4: 1 records extracted
+2026-03-04 14:19:54,221 - INFO - [extract_articles_data] - Found 14 articles on page
+2026-03-04 14:19:54,286 - INFO - [start_ultra_scraper] - Scroll 5: 1 records extracted
+2026-03-04 14:19:54,287 - INFO - [start_ultra_scraper] - Total data before dedup: 3
+2026-03-04 14:19:54,287 - INFO - [deduplicate_data] - Deduplicated: 3 -> 1 records
+2026-03-04 14:19:54,314 - INFO - [start_ultra_scraper] - Scraping completed: 1 records saved to inovasi_sumba_20260304_141954.csv
+2026-03-04 14:19:55,140 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 14:20:18,154 - INFO - [get_credentials_sync] - User input credentials: humas***
+2026-03-04 14:20:22,598 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 14:20:24,629 - INFO - [start_ultra_scraper] - Opening target group: https://www.facebook.com/groups/849737045757400/posts/2033088860755540/
+2026-03-04 14:20:28,386 - INFO - [start_ultra_scraper] - Already logged in from previous session
+2026-03-04 14:20:34,965 - INFO - [start_ultra_scraper] - Starting data extraction - 5 scrolls
+2026-03-04 14:20:40,018 - INFO - [extract_articles_data] - Found 3 articles on page
+2026-03-04 14:20:40,050 - INFO - [start_ultra_scraper] - Scroll 1: 0 records extracted
+2026-03-04 14:20:47,609 - INFO - [extract_articles_data] - Found 9 articles on page
+2026-03-04 14:20:47,646 - INFO - [start_ultra_scraper] - Scroll 2: 1 records extracted
+2026-03-04 14:20:55,198 - INFO - [extract_articles_data] - Found 13 articles on page
+2026-03-04 14:20:55,249 - INFO - [start_ultra_scraper] - Scroll 3: 1 records extracted
+2026-03-04 14:21:02,794 - INFO - [extract_articles_data] - Found 15 articles on page
+2026-03-04 14:21:02,852 - INFO - [start_ultra_scraper] - Scroll 4: 1 records extracted
+2026-03-04 14:21:10,403 - INFO - [extract_articles_data] - Found 17 articles on page
+2026-03-04 14:21:10,470 - INFO - [start_ultra_scraper] - Scroll 5: 1 records extracted
+2026-03-04 14:21:10,471 - INFO - [start_ultra_scraper] - Total data before dedup: 4
+2026-03-04 14:21:10,471 - INFO - [deduplicate_data] - Deduplicated: 4 -> 1 records
+2026-03-04 14:21:10,496 - INFO - [start_ultra_scraper] - Scraping completed: 1 records saved to inovasi_sumba_20260304_142110.csv
+2026-03-04 14:21:11,092 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-04 15:02:20,883 - INFO - [get_credentials_sync] - User input credentials: humas***
+2026-03-04 15:02:24,776 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-04 15:02:26,566 - INFO - [start_ultra_scraper] - Opening target group: https://www.facebook.com/groups/849737045757400/posts/2033088860755540/
+2026-03-04 15:02:30,206 - INFO - [start_ultra_scraper] - Already logged in from previous session
+2026-03-04 15:02:36,770 - INFO - [start_ultra_scraper] - Starting data extraction - 5 scrolls
+2026-03-04 15:02:41,802 - INFO - [extract_articles_data] - Found 4 articles on page
+2026-03-04 15:02:41,825 - INFO - [start_ultra_scraper] - Scroll 1: 0 records extracted
+2026-03-04 15:02:49,363 - INFO - [extract_articles_data] - Found 8 articles on page
+2026-03-04 15:02:49,403 - INFO - [start_ultra_scraper] - Scroll 2: 2 records extracted
+2026-03-04 15:02:56,950 - INFO - [extract_articles_data] - Found 8 articles on page
+2026-03-04 15:02:56,985 - INFO - [start_ultra_scraper] - Scroll 3: 3 records extracted
+2026-03-04 15:03:04,531 - INFO - [extract_articles_data] - Found 8 articles on page
+2026-03-04 15:03:04,563 - INFO - [start_ultra_scraper] - Scroll 4: 3 records extracted
+2026-03-04 15:03:12,120 - INFO - [extract_articles_data] - Found 8 articles on page
+2026-03-04 15:03:12,154 - INFO - [start_ultra_scraper] - Scroll 5: 3 records extracted
+2026-03-04 15:03:12,154 - INFO - [start_ultra_scraper] - Total data before dedup: 11
+2026-03-04 15:03:12,154 - INFO - [deduplicate_data] - Deduplicated: 11 -> 2 records
+2026-03-04 15:03:12,183 - INFO - [start_ultra_scraper] - Scraping completed: 2 records saved to inovasi_sumba_20260304_150312.csv
+2026-03-04 15:03:12,736 - INFO - [start_ultra_scraper] - Browser context closed
+2026-03-05 14:42:04,617 - INFO - [get_credentials_sync] - User input credentials: humas***
+2026-03-05 14:42:08,357 - INFO - [start_ultra_scraper] - Starting browser
+2026-03-05 14:42:09,013 - INFO - [start_ultra_scraper] - Opening target group: https://www.facebook.com/groups/849737045757400/posts/2033088860755540/
+2026-03-05 14:42:13,074 - INFO - [start_ultra_scraper] - Already logged in from previous session
+2026-03-05 14:42:19,632 - INFO - [start_ultra_scraper] - Starting data extraction - 5 scrolls
+2026-03-05 14:42:24,662 - INFO - [extract_articles_data] - Found 4 articles on page
+2026-03-05 14:42:24,686 - INFO - [start_ultra_scraper] - Scroll 1: 0 records extracted
+2026-03-05 14:42:32,235 - INFO - [extract_articles_data] - Found 8 articles on page
+2026-03-05 14:42:32,265 - INFO - [start_ultra_scraper] - Scroll 2: 0 records extracted
+2026-03-05 14:42:39,826 - INFO - [extract_articles_data] - Found 8 articles on page
+2026-03-05 14:42:39,857 - INFO - [start_ultra_scraper] - Scroll 3: 0 records extracted
+2026-03-05 14:42:47,413 - INFO - [extract_articles_data] - Found 8 articles on page
+2026-03-05 14:42:47,443 - INFO - [start_ultra_scraper] - Scroll 4: 0 records extracted
+2026-03-05 14:42:54,996 - INFO - [extract_articles_data] - Found 8 articles on page
+2026-03-05 14:42:55,027 - INFO - [start_ultra_scraper] - Scroll 5: 0 records extracted
+2026-03-05 14:42:55,027 - WARNING - [start_ultra_scraper] - No data extracted
+2026-03-05 14:42:55,543 - INFO - [start_ultra_scraper] - Browser context closed

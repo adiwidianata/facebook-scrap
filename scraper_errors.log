@@ -1,0 +1,119 @@
+[2026-03-05 14:16:38] Error during login: Page.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button[name=\"login\"]")
+
+[2026-03-05 14:16:38] Error di metode hashtag: Page.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button[name=\"login\"]")
+
+[2026-03-05 14:18:45] Error searching hashtag: Page.wait_for_timeout: Target page, context or browser has been closed
+[2026-03-05 14:18:45] Error di metode hashtag: Page.wait_for_timeout: Target page, context or browser has been closed
+[2026-03-05 14:22:36] Error searching hashtag: Page.wait_for_timeout: Target page, context or browser has been closed
+[2026-03-05 14:22:36] Error di metode hashtag: Page.wait_for_timeout: Target page, context or browser has been closed
+[2026-03-05 14:33:55] Error navigating to groups menu: Page.wait_for_timeout: Target page, context or browser has been closed
+[2026-03-05 14:33:55] Error di metode grup: Page.wait_for_timeout: Target page, context or browser has been closed
+[2026-03-05 14:37:27] Error searching hashtag: Page.goto: Page crashed
+Call log:
+  - navigating to "https://www.facebook.com/hashtag/waikabubak", waiting until "domcontentloaded"
+
+[2026-03-05 14:37:27] Error di metode hashtag: Page.goto: Page crashed
+Call log:
+  - navigating to "https://www.facebook.com/hashtag/waikabubak", waiting until "domcontentloaded"
+
+[2026-03-05 14:37:59] Error getting groups: Page.goto: Page crashed
+Call log:
+  - navigating to "https://www.facebook.com/groups/feed/", waiting until "networkidle"
+
+[2026-03-05 14:51:07] Error navigating to groups menu: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.facebook.com/groups/feed/", waiting until "networkidle"
+
+[2026-03-05 14:51:07] Error di metode grup: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.facebook.com/groups/feed/", waiting until "networkidle"
+
+[2026-03-05 15:00:19] Error scraping group posts: Page.wait_for_timeout: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup 1m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup 1m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup 1m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup Triplestarcafe: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup 2m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup 3m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup Triplestarcafe: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:19] Error scraping grup 3m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Triplestarcafe: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 4m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Dominggus Dangga: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 5m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 5m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 6m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 6m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 6m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Triplestarcafe: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Yolanda Lorukoba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 8m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Umbu Hunga Meha: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 13m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Yacthy Thaka: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 41m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Rastine Harry: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 50m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Yanthie Ina Ollshop: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 57m: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Anton Anton: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 1h: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Anton Anton: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 1h: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Ittydangga: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 1h: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Martins R: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 5h: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup Marselinus Linus: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 2h: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup JUAL BELI SUMBA BARAT WAIKABUBAK: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup RRI Sumba: Page.goto: Target page, context or browser has been closed
+[2026-03-05 15:00:20] Error scraping grup 1h: Page.goto: Target page, context or browser has been closed
+[2026-03-06 13:17:01] Error searching query: URL pencarian Facebook tidak tersedia. Facebook kemungkinan mengubah endpoint atau membatasi akses.
+[2026-03-06 13:17:01] Web app job error (6944bcf7-38aa-45ee-a92a-737736028ace): URL pencarian Facebook tidak tersedia. Facebook kemungkinan mengubah endpoint atau membatasi akses.
+[2026-03-06 13:19:45] Error searching query: URL pencarian Facebook tidak tersedia. Facebook kemungkinan mengubah endpoint atau membatasi akses.
+[2026-03-06 13:19:46] Web app job error (6f618f9d-ff4c-47cc-a33c-06fe36c92c0d): URL pencarian Facebook tidak tersedia. Facebook kemungkinan mengubah endpoint atau membatasi akses.
+[2026-04-20 08:34:18] Web app job error (171f222e-b7f3-4498-8ef0-8ff57b60d609): Akun belum login. Isi email dan password di GUI untuk login.

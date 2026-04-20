@@ -1,0 +1,12 @@
+2026-03-04 13:24:47,019 - ERROR - Error pada skrip: Page.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("button[name=\"login\"]")
+
+2026-03-04 13:26:09,192 - ERROR - Error pada skrip: Page.click: Target page, context or browser has been closed
+Call log:
+  - waiting for locator("button[name=\"login\"]")
+
+2026-03-04 13:26:27,007 - ERROR - Error pada skrip: Page.reload: Page crashed
+Call log:
+  - waiting for navigation until "load"
+
