@@ -10,6 +10,7 @@ Aplikasi scraper untuk mengekstrak data bisnis dari grup Facebook, khususnya fok
 ## ✨ Fitur Utama
 
 - ✅ **Scraping otomatis** dari posts grup Facebook
+- ✅ **Alur login kombinasi**: login manual di Chromium terlihat, lalu scraping lanjut headless setelah session valid
 - ✅ **Ekstraksi data smart** dengan regex patterns yang akurat
 - ✅ **Deduplication** untuk menghindari data duplikat
 - ✅ **Error handling & retry logic** untuk stabilitas
@@ -77,7 +78,8 @@ http://localhost:5000
 - Pantau progress realtime sampai selesai
 
 Catatan:
-- Chromium dijalankan dalam mode headless (background), jadi jendela browser tidak akan muncul.
+- Jika session belum valid, aplikasi akan membuka Chromium terlihat untuk login manual dan verifikasi CAPTCHA/2FA.
+- Setelah login berhasil dan session tersimpan, scraping berikutnya berjalan di Chromium headless (background).
 - File hasil scraping bisa diunduh langsung dari dashboard saat job selesai.
 
 ### Cara Dasar
@@ -102,12 +104,14 @@ http://127.0.0.1:5000
 
 Fitur dashboard:
 - Menjalankan scraping dari website (mode search / marketplace / groups)
-- Chromium berjalan headless di background (tidak membuka jendela browser)
+- Login awal bisa tampil di jendela Chromium untuk verifikasi manual
+- Setelah session valid, Chromium scraping berjalan headless di background
 - Progress bar + log realtime
 - Download hasil CSV langsung dari UI
 
 Catatan:
 - Isi email/password jika session login belum valid.
+- Jika muncul verifikasi gambar/CAPTCHA, selesaikan di browser yang terbuka lalu tunggu session terdeteksi.
 - Jika session sudah valid, bisa jalan tanpa isi password.
 
 ### Dengan Custom Parameter
@@ -122,11 +126,11 @@ TARGET_GROUP_URL = "https://www.facebook.com/groups/XXXX"
 
 ### Modes
 
-- **Interactive Mode** (default): Aplikasi akan meminta login jika diperlukan
-- **Headless Mode**: Edit `config.py` → `HEADLESS_MODE = True`
-- **Silent Mode**: Set credentials di `.env` dan headless mode
+- **Interactive Login Mode** (default untuk login): Browser terlihat dipakai untuk login manual dan verifikasi jika session belum valid
+- **Headless Scraping Mode**: Setelah login berhasil, scraping berjalan di Chromium background
+- **Silent Mode**: Set credentials di `.env`/environment dan gunakan session yang sudah tersimpan
 
-Untuk mode web (`web_app.py`), browser otomatis dijalankan headless di background.
+Untuk mode web (`web_app.py`), aplikasi memakai dua fase: visible browser untuk login manual jika diperlukan, lalu headless browser untuk scraping.
 
 ## 📁 Struktur File
 
@@ -147,7 +151,7 @@ Untuk mode web (`web_app.py`), browser otomatis dijalankan headless di backgroun
 
 ### Browser Settings
 ```python
-HEADLESS_MODE = False              # false = visible window
+HEADLESS_MODE = False              # false = visible window saat login manual
 SLOW_MO = 300                      # delay per action
 BROWSER_TIMEOUT = 90000            # page load timeout
 PAGE_LOAD_TIMEOUT = 60000          # group page timeout
@@ -198,7 +202,8 @@ Hasil scraping akan disimpan sebagai CSV dengan columns:
 ### Login Failed
 - Periksa credentials (email/password)
 - Coba clear `fb_session/` folder dan restart
-- Jika akun punya 2FA, login manual dulu kemudian jalankan script
+- Jika akun punya 2FA/CAPTCHA, login manual di browser yang terbuka lalu tunggu session tersimpan
+- Pastikan jendela login manual tidak memakai mode ringan yang memblokir image
 
 ### "No data found"
 - Periksa `TARGET_GROUP_URL` benar
@@ -274,7 +279,7 @@ Dibanding versi original, ada perbaikan:
 
 Untuk issues atau suggestions, check:
 1. Log file (`fb_scraper.log`)
-2. Browser console (dalam headless window)
+2. Browser console (saat login manual atau headless scraping)
 3. Facebook session (`fb_session/` folder)
 
 ## 📄 License
@@ -283,5 +288,5 @@ Internal use only
 
 ---
 
-**Last Updated:** March 4, 2026  
-**Version:** 2.0
+**Last Updated:** May 1, 2026  
+**Version:** 2.1

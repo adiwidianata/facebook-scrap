@@ -4,6 +4,7 @@ Berisi helper functions untuk ekstraksi data, validasi, dan processing
 """
 import re
 import logging
+import hashlib
 from datetime import datetime
 from typing import Dict, Optional, Set
 import config
@@ -180,8 +181,12 @@ async def get_credentials():
         "password": password
     }
 
-def save_session(context, email):
-    """Save browser session to file"""
+async def save_session(context, email):
+    """Save browser session metadata and Playwright storage state to file.
+
+    Writes `facebook_session.json` and, if a Playwright context is provided,
+    also writes `facebook_state.json` via `context.storage_state()`.
+    """
     try:
         session_data = {
             "email": email,
@@ -189,6 +194,15 @@ def save_session(context, email):
         }
         with open(SESSION_FILE, 'w') as f:
             json.dump(session_data, f)
+
+        # If Playwright context provided, try to persist storage state
+        try:
+            if context and hasattr(context, 'storage_state'):
+                # context.storage_state is async
+                await context.storage_state(path='facebook_state.json')
+        except Exception as inner_e:
+            logger.warning(f"Unable to persist storage_state: {inner_e}")
+
         print("✅ Session disimpan")
     except Exception as e:
         log_error(f"Error saving session: {str(e)}")
@@ -277,12 +291,120 @@ async def check_login_status(page):
         if 'join or log in to facebook' in body_text or 'masuk ke facebook' in body_text:
             return False
 
+        # Check cookies for Playwright / Facebook logged-in indicator.
+        try:
+            cookies = await page.context.cookies()
+            for c in cookies:
+                if c.get('name') == 'c_user' and c.get('value'):
+                    print("✅ Ditemukan cookie login 'c_user' — dianggap sudah login")
+                    return True
+        except Exception:
+            # Non-fatal: continue to conservative fallback
+            pass
+
         # Conservative fallback: assume logged out when uncertain.
         return False
     except:
         return False
 
-async def login_to_facebook(page, email, password, context=None):
+
+async def save_login_diagnostics(page, note: str = "diag") -> dict:
+    """Save screenshot and page HTML for diagnosing login issues.
+
+    Returns a dict with saved file paths.
+    """
+    out = {}
+    try:
+        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+        base = f"login_{note}_{ts}"
+
+        # screenshot
+        try:
+            png_path = f"{base}.png"
+            await page.screenshot(path=png_path, full_page=True)
+            out['screenshot'] = png_path
+        except Exception as e:
+            out['screenshot_error'] = str(e)
+
+        # HTML content (trim if large)
+        try:
+            html = await page.content()
+            html_path = f"{base}.html"
+            with open(html_path, 'w', encoding='utf-8') as f:
+                # store full content; it's useful for debugging
+                f.write(html)
+            out['html'] = html_path
+        except Exception as e:
+            out['html_error'] = str(e)
+
+        # Save a short text dump of body inner text to speed inspection
+        try:
+            text = ''
+            if await page.query_selector('body'):
+                text = await page.inner_text('body')
+            text_path = f"{base}.txt"
+            with open(text_path, 'w', encoding='utf-8') as f:
+                f.write((text or '').strip()[:20000])
+            out['text'] = text_path
+        except Exception as e:
+            out['text_error'] = str(e)
+
+        log_error(f"Login diagnostics saved: {out}")
+    except Exception as e:
+        log_error(f"Error saving login diagnostics: {e}")
+
+    return out
+
+
+async def has_facebook_login_cookie(page) -> bool:
+    """Return True when Facebook session cookie is present in the current browser context."""
+    try:
+        cookies = await page.context.cookies()
+        return any(c.get('name') == 'c_user' and c.get('value') for c in cookies)
+    except Exception:
+        return False
+
+
+async def create_browser_context(
+    playwright,
+    headless: bool,
+    storage_state_path: str = "facebook_state.json",
+    lightweight: Optional[bool] = None,
+):
+    """Create a Chromium browser and context with the repo's standard settings."""
+    browser = await playwright.chromium.launch(
+        channel=config.BROWSER_CHANNEL,
+        headless=headless,
+        slow_mo=config.SLOW_MO if not headless else 0,
+        args=config.BROWSER_ARGS,
+    )
+
+    context = await browser.new_context(
+        storage_state=storage_state_path if storage_state_path and os.path.exists(storage_state_path) else None,
+        viewport=config.VIEWPORT,
+        reduced_motion="reduce",
+        user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+    )
+    context.set_default_timeout(config.BROWSER_TIMEOUT)
+    context.set_default_navigation_timeout(config.PAGE_LOAD_TIMEOUT)
+
+    if lightweight is None:
+        lightweight = config.LIGHTWEIGHT_MODE
+
+    if lightweight:
+        blocked_types = set(config.BLOCK_RESOURCE_TYPES)
+
+        async def route_handler(route, request):
+            if request.resource_type in blocked_types:
+                await route.abort()
+            else:
+                await route.continue_()
+
+        await context.route("**/*", route_handler)
+
+    return browser, context
+
+async def login_to_facebook(page, email, password, context=None, allow_manual_fallback=True):
     """Login to Facebook"""
     try:
         await page.goto('https://www.facebook.com/', wait_until='networkidle')
@@ -343,20 +465,97 @@ async def login_to_facebook(page, email, password, context=None):
         except:
             pass
         
-        # Check if login successful
-        current_url = page.url
-        if 'login' not in current_url.lower():
-            print("✅ Login berhasil")
-            
-            # Save session
+        # Check if login successful by inspecting DOM markers
+        # First, try cookie-based check (faster/more reliable)
+        if await has_facebook_login_cookie(page):
+            print("✅ Cookie 'c_user' terdeteksi — login berhasil")
             if context:
-                save_session(context, email)
-            
+                try:
+                    await save_session(context, email)
+                except Exception:
+                    logger.warning("Gagal menyimpan session, melanjutkan tanpa crash")
             return True
-        else:
-            print("⚠️ Mungkin perlu verifikasi tambahan atau login gagal")
-            await page.wait_for_timeout(10000)
+
+        is_logged = await check_login_status(page)
+        if is_logged:
+            print("✅ Login berhasil")
+            # Save session metadata (non-blocking)
+            if context:
+                try:
+                    await save_session(context, email)
+                except Exception:
+                    logger.warning("Gagal menyimpan session, melanjutkan tanpa crash")
             return True
+
+        # Not logged in yet — likely needs verification or failed
+        print("⚠️ Login tampak gagal atau butuh verifikasi")
+        await page.wait_for_timeout(10000)
+        # Re-check once more before failing
+        if await check_login_status(page):
+            if context:
+                try:
+                    await save_session(context, email)
+                except Exception:
+                    logger.warning("Gagal menyimpan session pada re-check")
+            return True
+
+        if allow_manual_fallback:
+            print("\n🖐️ Login otomatis gagal. Silakan selesaikan verifikasi/login manual di browser yang terbuka.")
+            print("    Saya akan menunggu beberapa menit dan memeriksa ulang status login secara berkala.")
+
+            manual_deadline = datetime.now() + timedelta(seconds=180)
+            while datetime.now() < manual_deadline:
+                if await has_facebook_login_cookie(page):
+                    print("✅ Login manual terdeteksi lewat cookie 'c_user'")
+                    if context:
+                        try:
+                            await save_session(context, email)
+                        except Exception:
+                            logger.warning("Gagal menyimpan session setelah login manual")
+                    return True
+
+                try:
+                    current_url = (page.url or "").lower()
+                except Exception:
+                    current_url = ""
+
+                if 'checkpoint' in current_url:
+                    print("⚠️ Browser terdeteksi berada di checkpoint. Silakan selesaikan verifikasi pada browser.")
+
+                await page.wait_for_timeout(3000)
+
+            print("⚠️ Batas waktu menunggu login manual habis.")
+
+        # Diagnose possible checkpoint or verification page
+        try:
+            current_url = (page.url or "").lower()
+        except Exception:
+            current_url = ""
+
+        body_text = ""
+        try:
+            if await page.query_selector('body'):
+                body_text = (await page.inner_text('body') or '')
+        except Exception:
+            try:
+                body_text = await page.content()
+            except Exception:
+                body_text = ""
+
+        if 'checkpoint' in current_url or re.search(r"verify|verification|checkpoint|two[- ]?factor|enter code|security|confirm", body_text, flags=re.IGNORECASE):
+            diag = {}
+            try:
+                diag = await save_login_diagnostics(page, note='checkpoint')
+            except Exception as e:
+                logger.warning(f"Failed to write diagnostics: {e}")
+            raise RuntimeError(f"Checkpoint/verification required. Diagnostics: {diag}")
+
+        # Generic failure: save diagnostics then raise
+        try:
+            diag = await save_login_diagnostics(page, note='login_failed')
+        except Exception as e:
+            logger.warning(f"Failed to write diagnostics: {e}")
+        raise RuntimeError("Login gagal atau memerlukan verifikasi tambahan; diagnostics saved.")
             
     except Exception as e:
         log_error(f"Error during login: {str(e)}")
@@ -769,6 +968,19 @@ async def scrape_group_posts(page, days=365):
                 post_data['timestamp'] = posting_time
                 post_data['waktu_postingan'] = posting_time
 
+                # Apply days filter if posting_time can be parsed
+                post_dt = None
+                try:
+                    post_dt = _parse_post_datetime(posting_time)
+                except Exception:
+                    post_dt = None
+
+                if post_dt is not None:
+                    age_days = (datetime.now() - post_dt).days
+                    if age_days > int(days):
+                        # Skip posts older than configured days
+                        continue
+
                 post_data['phone_number'] = extract_phone_number(post_data['text'])
                 
                 posts_data.append(post_data)
@@ -779,6 +991,145 @@ async def scrape_group_posts(page, days=365):
     except Exception as e:
         log_error(f"Error scraping group posts: {str(e)}")
         return []
+
+
+def _parse_post_datetime(time_str: str) -> Optional[datetime]:
+    """Try to parse several common time string formats returned by extract_post_time.
+
+    Returns a datetime when parsable, otherwise None.
+    Supports absolute unix timestamp formatting (YYYY-MM-DD HH:MM:SS),
+    simple date strings, and relative Indonesian/English phrases like '2 hari yang lalu'.
+    """
+    if not time_str:
+        return None
+
+    s = time_str.strip()
+
+    # Common absolute format produced by _format_unix_timestamp in this module
+    try:
+        return datetime.strptime(s, "%Y-%m-%d %H:%M:%S")
+    except Exception:
+        pass
+
+    try:
+        return datetime.strptime(s, "%Y-%m-%d")
+    except Exception:
+        pass
+
+    s_lower = s.lower()
+    now = datetime.now()
+
+    # Relative patterns (Indonesian/English)
+    m = re.search(r"(\d+)\s*(menit|mnt|min|minute|minutes)", s_lower)
+    if m:
+        minutes = int(m.group(1))
+        return now - timedelta(minutes=minutes)
+
+    m = re.search(r"(\d+)\s*(jam|hour|hours)", s_lower)
+    if m:
+        hours = int(m.group(1))
+        return now - timedelta(hours=hours)
+
+    m = re.search(r"(\d+)\s*(hari|day|days)", s_lower)
+    if m:
+        days = int(m.group(1))
+        return now - timedelta(days=days)
+
+    if "kemarin" in s_lower or "yesterday" in s_lower:
+        return now - timedelta(days=1)
+
+    if "just now" in s_lower or "baru saja" in s_lower:
+        return now
+
+    # Can't parse -> None (will keep the post)
+    return None
+
+
+def extract_data_points(text: str) -> Optional[Dict[str, str]]:
+    """Extract business data points from a block of text.
+
+    Returns a dictionary with common output keys or None if nothing found.
+    """
+    if not text or not text.strip():
+        return None
+
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    phone = extract_phone_number(text)
+
+    price_match = re.search(config.PRICE_PATTERN, text, flags=re.IGNORECASE)
+    price = price_match.group(0).strip() if price_match else ""
+
+    # Detect kecamatan from KECAMATAN_REF keys
+    kecamatan = ""
+    kabupaten = ""
+    lat = ""
+    long = ""
+    lower_text = text.lower()
+    for district, meta in config.KECAMATAN_REF.items():
+        if district.lower() in lower_text:
+            kecamatan = district
+            kabupaten = meta.get("kab", "")
+            lat = str(meta.get("lat", ""))
+            long = str(meta.get("long", ""))
+            break
+
+    summary = text.strip()
+
+    data = {
+        "tanggal_ambil": now,
+        "kabupaten": kabupaten,
+        "kecamatan": kecamatan,
+        "whatsapp": phone,
+        "harga": price,
+        "latitude": lat,
+        "longitude": long,
+        "ringkasan_iklan": summary[: config.TEXT_SUMMARY_LENGTH] if hasattr(config, 'TEXT_SUMMARY_LENGTH') else summary[:250],
+        "facebook_user": "",
+        "facebook_profile_url": "",
+        "phone_number": phone,
+        "post_url": "",
+        "search_query": "",
+        "search_location": "",
+    }
+
+    # If nothing useful extracted, return None
+    if not phone and not price and not kecamatan:
+        return None
+
+    return data
+
+
+def deduplicate_data(data_list: list) -> list:
+    """Deduplicate entries using composite key (whatsapp, harga, kecamatan, post_url or text-hash)."""
+    seen = set()
+    unique = []
+
+    for item in data_list:
+        whatsapp = (item.get("whatsapp") or item.get("phone_number") or "").strip()
+        harga = (item.get("harga") or item.get("price") or "").strip()
+        kecamatan = (item.get("kecamatan") or "").strip()
+        post_url = (item.get("post_url") or item.get("url") or "").strip()
+
+        if post_url:
+            key = (whatsapp, harga, kecamatan, post_url)
+        else:
+            # fallback: use hash of text content
+            txt = (item.get("ringkasan_iklan") or item.get("text") or "").strip()
+            h = hashlib.sha1(txt.encode('utf-8')).hexdigest() if txt else ""
+            key = (whatsapp, harga, kecamatan, h)
+
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(item)
+
+    return unique
+
+
+def generate_filename(prefix: str = "scrape") -> str:
+    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    safe = prefix.replace(" ", "_")
+    return f"{safe}_{ts}.csv"
 
 def save_to_csv(data, filename):
     """Save data to CSV file"""

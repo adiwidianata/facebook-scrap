@@ -21,6 +21,7 @@ from config import (
 )
 from utils import (
     check_login_status,
+    create_browser_context,
     delete_session,
     extract_search_results,
     extract_marketplace_results,
@@ -188,54 +189,72 @@ async def _run_scraper(
     if session and not has_storage_state:
         _append_log("Metadata session ada, tetapi file state hilang. Login ulang akan dilakukan.")
         session = None
-
-    _append_log("Menjalankan Playwright dalam mode headless (Chromium di background).")
-    _set_state(status="Membuka browser background", progress=5)
+    elif has_storage_state and not session:
+        _append_log("File state login ditemukan tanpa metadata session. State akan dipakai langsung.")
 
     async with async_playwright() as p:
-        browser = await p.chromium.launch(
-            channel=BROWSER_CHANNEL,
-            headless=True,
-            slow_mo=SLOW_MO,
-            args=BROWSER_ARGS,
-        )
+        _append_log("Memeriksa session yang tersimpan.")
+        _set_state(status="Memeriksa status login", progress=5)
 
-        context = await browser.new_context(
-            storage_state=storage_state_path if session and has_storage_state else None,
-            viewport=VIEWPORT,
-            reduced_motion="reduce",
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-        )
-        context.set_default_timeout(BROWSER_TIMEOUT)
-        context.set_default_navigation_timeout(PAGE_LOAD_TIMEOUT)
-
-        if LIGHTWEIGHT_MODE:
-            blocked_types = set(BLOCK_RESOURCE_TYPES)
-
-            async def route_handler(route, req):
-                if req.resource_type in blocked_types:
-                    await route.abort()
-                else:
-                    await route.continue_()
-
-            await context.route("**/*", route_handler)
-
-        page = await context.new_page()
+        probe_browser = None
+        browser = None
+        is_logged_in = False
 
         try:
-            _set_state(status="Memeriksa status login", progress=12)
-            is_logged_in = await check_login_status(page)
+            probe_browser, probe_context = await create_browser_context(
+                p,
+                headless=True,
+                storage_state_path=storage_state_path,
+            )
+            probe_page = await probe_context.new_page()
+            is_logged_in = await check_login_status(probe_page)
+        finally:
+            if probe_browser:
+                await probe_browser.close()
 
-            if not is_logged_in:
-                if not email or not password:
-                    raise ValueError("Akun belum login. Isi email dan password di GUI untuk login.")
-                _append_log("Session belum valid. Melakukan login Facebook.")
-                _set_state(status="Login ke Facebook", progress=20)
-                await login_to_facebook(page, email, password, context)
-                await context.storage_state(path=storage_state_path)
+        if not is_logged_in:
+            if not email or not password:
+                raise ValueError("Akun belum login. Isi email dan password di GUI untuk login.")
+            _append_log("Session belum valid. Membuka Chromium terlihat untuk login manual.")
+            _set_state(status="Login manual di browser", progress=18)
+
+            login_browser, login_context = await create_browser_context(
+                p,
+                headless=False,
+                storage_state_path=storage_state_path,
+                lightweight=False,
+            )
+            try:
+                login_page = await login_context.new_page()
+                await login_to_facebook(
+                    login_page,
+                    email,
+                    password,
+                    login_context,
+                    allow_manual_fallback=True,
+                )
+                await login_context.storage_state(path=storage_state_path)
                 _append_log("Login berhasil dan session disimpan.")
-            else:
-                _append_log("Session login ditemukan, lanjut scraping.")
+            finally:
+                await login_browser.close()
+        else:
+            _append_log("Session login ditemukan, lanjut ke scraping headless.")
+
+        _append_log("Login selesai. Menjalankan scraping dalam mode headless.")
+        _set_state(status="Membuka browser background", progress=30)
+
+        try:
+            browser, context = await create_browser_context(
+                p,
+                headless=True,
+                storage_state_path=storage_state_path,
+                lightweight=True,
+            )
+            page = await context.new_page()
+
+            _set_state(status="Memeriksa status login", progress=35)
+            if not await check_login_status(page):
+                raise RuntimeError("Session belum siap setelah login manual/otomatis.")
 
             if mode == "search":
                 if not query:
@@ -350,7 +369,6 @@ async def _run_scraper(
                 total_groups = len(groups)
 
                 for idx, group in enumerate(groups, start=1):
-                    # Progress dinaikkan bertahap seiring proses tiap grup.
                     progress = 55 + int((idx / total_groups) * 35)
                     _set_state(
                         status=f"Scraping grup {idx}/{total_groups}: {group['name']}",
@@ -407,7 +425,8 @@ async def _run_scraper(
             raise ValueError("Mode scraping tidak valid.")
 
         finally:
-            await browser.close()
+            if browser:
+                await browser.close()
 
 
 def _job_runner(

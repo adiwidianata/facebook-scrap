@@ -66,9 +66,11 @@ async def scrape_by_search():
     storage_state_path = "facebook_state.json"
     has_storage_state = os.path.exists(storage_state_path)
 
-    if session and not has_storage_state:
+    if not has_storage_state and session:
         print("⚠️ Metadata session ada, tapi file state login hilang. Login ulang diperlukan.")
         session = None
+    elif has_storage_state and not session:
+        print("✅ File state login ditemukan. Akan dipakai tanpa metadata session.")
 
     credentials = None
     
@@ -86,7 +88,7 @@ async def scrape_by_search():
         # Use persistent context to save session
         user_data_dir = "./facebook_user_data"
         context = await browser.new_context(
-            storage_state=storage_state_path if session and has_storage_state else None,
+            storage_state=storage_state_path if has_storage_state else None,
             viewport=VIEWPORT,
             reduced_motion="reduce",
             user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
@@ -116,7 +118,13 @@ async def scrape_by_search():
                     credentials = await get_credentials()
                 # Login ke Facebook
                 print(f"\n🔐 Melakukan login...")
-                await login_to_facebook(page, credentials["email"], credentials["password"], context)
+                await login_to_facebook(
+                    page,
+                    credentials["email"],
+                    credentials["password"],
+                    context,
+                    allow_manual_fallback=not HEADLESS_MODE,
+                )
                 
                 # Save storage state
                 await context.storage_state(path="facebook_state.json")
@@ -155,9 +163,11 @@ async def scrape_by_groups():
     storage_state_path = "facebook_state.json"
     has_storage_state = os.path.exists(storage_state_path)
 
-    if session and not has_storage_state:
+    if not has_storage_state and session:
         print("⚠️ Metadata session ada, tapi file state login hilang. Login ulang diperlukan.")
         session = None
+    elif has_storage_state and not session:
+        print("✅ File state login ditemukan. Akan dipakai tanpa metadata session.")
 
     credentials = None
     
@@ -174,7 +184,7 @@ async def scrape_by_groups():
         
         # Use persistent context to save session
         context = await browser.new_context(
-            storage_state=storage_state_path if session and has_storage_state else None,
+            storage_state=storage_state_path if has_storage_state else None,
             viewport=VIEWPORT,
             reduced_motion="reduce",
             user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
@@ -204,7 +214,13 @@ async def scrape_by_groups():
                     credentials = await get_credentials()
                 # Login ke Facebook
                 print(f"\n🔐 Melakukan login...")
-                await login_to_facebook(page, credentials["email"], credentials["password"], context)
+                await login_to_facebook(
+                    page,
+                    credentials["email"],
+                    credentials["password"],
+                    context,
+                    allow_manual_fallback=not HEADLESS_MODE,
+                )
                 
                 # Save storage state
                 await context.storage_state(path="facebook_state.json")
